@@ -1,0 +1,32 @@
+@startuml
+
+left to right direction
+skinparam actor {
+    BackgroundColor DarkSeaGreen
+    BorderColor Black
+}
+
+actor "Usuario\n(Veterinario/Laboratorista)" as usuario
+actor "Administrador" as admin
+actor "Sistema\n(Large Language Model)" as sistema
+
+rectangle "Sistema de Análisis y Diagnóstico\nde Enfermedades" {
+    usecase "Ingresar Resultados\nClínicos" as ingresar_resultados
+    usecase "Buscar Valores de\nReferencia" as buscar_valores
+    usecase "Detectar Anomalías\nen Parámetros" as detectar_anomalias
+    usecase "Brindar Ayuda en el\nDiagnóstico" as brindar_ayuda
+    usecase "Entrenar/Configurar\nLLM" as entrenar_configurar_llm
+    usecase "Gestionar Usuarios" as gestionar_usuarios
+
+    usuario --> ingresar_resultados : Ingresa resultados
+    usuario --> buscar_valores : Busca valores de referencia
+    sistema --> buscar_valores : Procesa búsqueda
+    usuario --> detectar_anomalias : Revisa anomalías
+    sistema --> detectar_anomalias : Detecta anomalías
+    usuario --> brindar_ayuda : Recibe ayuda en diagnóstico
+    sistema --> brindar_ayuda : Brinda ayuda en diagnóstico
+    usuario --> entrenar_configurar_llm : Entrena o configura LLM
+    admin --> gestionar_usuarios : Gestiona usuarios
+}
+
+@enduml

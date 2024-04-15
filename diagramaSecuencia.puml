@@ -1,0 +1,21 @@
+@startuml
+actor Usuario
+participant "Interfaz de Usuario" as IU
+participant "Módulo de Búsqueda" as MB
+database "Valores de Referencia" as VR
+participant "Módulo de Análisis" as MA
+participant "LLM" as LLM
+
+Usuario -> IU: Ingresa datos del animal y exámenes
+IU -> MB: Solicita valores de referencia
+MB -> VR: Busca valores de referencia
+VR --> MB: Retorna valores de referencia
+MB --> IU: Entrega valores de referencia
+IU -> MA: Envía datos del animal y resultados de exámenes
+MA -> MA: Compara resultados con valores de referencia
+MA -> LLM: Solicita análisis de patrones
+LLM --> MA: Retorna posibles diagnósticos
+MA --> IU: Entrega análisis y posibles diagnósticos
+IU --> Usuario: Muestra valores de referencia, análisis y diagnósticos
+@enduml
+
